@@ -1,5 +1,6 @@
-from fastapi import FastAPI
+from typing import Any
 
+from fastapi import Body, FastAPI
 
 app = FastAPI()
 
@@ -10,7 +11,6 @@ books = [
     {"title": "Title Four", "author": "Author Four", "category": "math"},
     {"title": "Title Five", "author": "Author Five", "category": "math"},
 ]
-
 
 
 @app.get("/books")
@@ -28,27 +28,21 @@ async def read_book_by_category(category: str):
     return [b for b in books if b["category"].casefold() == category.casefold()]
 
 
-# @app.post("/")
-# async def home():
-#     return {"Hello": "World"}
+@app.post("/book")
+async def insert_book(new_book: Any = Body()):
+    books.append(new_book)
 
 
-# @app.put("/")
-# async def home():
-#     return {"Hello": "World"}
+@app.put("/book")
+async def update_book(book: Any = Body()):
+    for b in books:
+        if b["title"].casefold() == book["title"].casefold():
+            b.update(book)
 
 
-# @app.delete("/")
-# async def home():
-#     return {"Hello": "World"}
-
-
-"""
-Routers a fazer:
-- retornar todos livros;
-- retornar livro por título (path parameter);
-- retornar livro por categoria (query parameter);
-- inserir novo livro;
-- atualizar livro por título;
-- deletar livro por título;
-"""
+@app.delete("/book/{book_title}")
+async def delete_book(book_title: str):
+    for b in books:
+        if b["title"].casefold() == book_title.casefold():
+            books.remove(b)
+            break
