@@ -16,9 +16,14 @@ async def read_book_by_id(book_id: int):
     return [b for b in books if b.id == book_id][0]
 
 
-@app.get("/book/")
+@app.get("/book/rating/")
 async def read_book_by_rating(rating: int):
     return [b for b in books if b.rating == rating]
+
+
+@app.get("/book/published-date/")
+async def read_book_by_rating(published_date: int):
+    return [b for b in books if b.published_date == published_date]
 
 
 @app.post("/book")
