@@ -1,5 +1,8 @@
-from config import Base, engine
-from sqlalchemy.ext.declarative import declarative_base
+from config import DBConnection
+from sqlalchemy.orm import declarative_base
+
+db_conn = DBConnection()
+engine = db_conn.get_engine()
 
 Base = declarative_base()
 Base.metadata.create_all(bind=engine)
