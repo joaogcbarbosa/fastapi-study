@@ -1,12 +1,18 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import Session
-from sqlalchemy import Engine
+import os
 from dataclasses import dataclass
+
+from dotenv import load_dotenv
+from sqlalchemy import Engine, create_engine
+from sqlalchemy.orm import Session
+
+load_dotenv()
+
+SQLALCHEMY_DB_URL = os.getenv("SQLALCHEMY_DB_URL")
 
 
 @dataclass
 class DBConnection:
-    sqlalchemy_db_url: str = "sqlite:///./todos.db"
+    sqlalchemy_db_url: str = SQLALCHEMY_DB_URL
 
     def get_engine(self) -> Engine:
         return create_engine(self.sqlalchemy_db_url)
