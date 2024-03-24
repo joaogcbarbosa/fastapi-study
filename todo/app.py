@@ -18,7 +18,7 @@ async def get_all_todos():
 
 
 @app.get("/todo{todo_id}", status_code=status.HTTP_200_OK)
-async def get_all_todos(todo_id: int = Path(gt=0)):
+async def get_todo(todo_id: int = Path(gt=0)):
     session = db_conn.get_session()
     todo = session.query(Todo).filter_by(id=todo_id).first()
     if todo is None:
