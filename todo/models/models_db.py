@@ -15,3 +15,11 @@ class Todo(Base):
     description: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)
     priority: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
     complete: Mapped[bool] = mapped_column(Boolean, default=False)
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "description": self.description,
+            "priority": self.priority,
+        }
