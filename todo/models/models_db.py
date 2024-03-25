@@ -1,6 +1,6 @@
 from typing import Optional
 
-from sqlalchemy import Boolean, Integer, String
+from sqlalchemy import Boolean, Integer, String, ForeignKey
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
@@ -27,6 +27,7 @@ class Todo(Base):
     description: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)
     priority: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
     complete: Mapped[bool] = mapped_column(Boolean, default=False)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
 
     def to_dict(self):
         return {
