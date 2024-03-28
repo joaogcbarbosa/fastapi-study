@@ -3,6 +3,16 @@ from typing import Optional
 from pydantic import BaseModel, Field
 
 
+class UserRequest(BaseModel):
+    id: Optional[int] = None
+    email: str
+    username: str
+    first_name: str
+    last_name: str
+    password: str
+    role: str
+
+
 class TodoRequest(BaseModel):
     id: Optional[int] = None
     title: str = Field(min_length=3)
