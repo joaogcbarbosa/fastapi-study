@@ -17,7 +17,7 @@ class User(Base):
     username: Mapped[str] = mapped_column(String(20), nullable=False, unique=True)
     first_name: Mapped[str] = mapped_column(String(100), nullable=False)
     last_name: Mapped[str] = mapped_column(String(100), nullable=False)
-    hashed_password: Mapped[str] = mapped_column(String(50), nullable=False)
+    hashed_password: Mapped[str] = mapped_column(String(100), nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, nullable=False)
     role: Mapped[str] = mapped_column(String(20), nullable=False)
 
