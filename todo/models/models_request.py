@@ -29,3 +29,8 @@ class TodoRequest(BaseModel):
                 "complete": 0,
             }
         }
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
