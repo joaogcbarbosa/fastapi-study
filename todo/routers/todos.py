@@ -5,7 +5,11 @@ from models.models_request import TodoRequest
 from config import DBConnection
 
 
-router = APIRouter()
+router = APIRouter(
+    prefix="/todo",
+    tags=["TODO's"]
+)
+
 db_conn = DBConnection()
 
 
@@ -18,7 +22,7 @@ async def get_all_todos():
     return todos
 
 
-@router.get("/todo/{todo_id}", status_code=status.HTTP_200_OK)
+@router.get("/{todo_id}", status_code=status.HTTP_200_OK)
 async def get_todo(todo_id: int = Path(gt=0)):
     session = db_conn.get_session()
     todo = session.query(Todo).filter_by(id=todo_id).first()
@@ -27,7 +31,7 @@ async def get_todo(todo_id: int = Path(gt=0)):
     return todo
 
 
-@router.post("/todo", status_code=status.HTTP_201_CREATED)
+@router.post("", status_code=status.HTTP_201_CREATED)
 async def insert_todo(todo_request: TodoRequest):
     new_todo = Todo(**todo_request.model_dump())
     session = db_conn.get_session()
@@ -35,7 +39,7 @@ async def insert_todo(todo_request: TodoRequest):
     session.commit()
 
 
-@router.put("/todo/{todo_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.put("/{todo_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def update_todo(todo_request: TodoRequest, todo_id: int = Path(gt=0)):
     session = db_conn.get_session()
     todo_to_update = session.query(Todo).filter_by(id=todo_id).first()
@@ -46,7 +50,7 @@ async def update_todo(todo_request: TodoRequest, todo_id: int = Path(gt=0)):
     session.commit()
 
 
-@router.delete("/todo/{todo_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/{todo_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_todo(todo_id: int = Path(gt=0)):
     session = db_conn.get_session()
     todo_to_delete = session.query(Todo).filter_by(id=todo_id).first()
