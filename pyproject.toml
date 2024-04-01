@@ -10,6 +10,8 @@ dependencies = [
     "sqlalchemy",
     "passlib",
     "bcrypt==4.0.1",  # pinned because passlib tries to read modules that no longer exist in newer versions of bcrypt
+    "python-multipart",
+    "python-jose[cryiptography]",
 ]
 
 [project.optional-dependencies]
