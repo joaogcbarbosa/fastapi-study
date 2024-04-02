@@ -10,6 +10,7 @@ from starlette import status
 from utils.authentication import authenticate_user, create_access_token
 from datetime import timedelta
 
+
 router = APIRouter(
     prefix="/auth",
     tags=["Authentication"]
@@ -43,7 +44,7 @@ async def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm,
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Could not validate user."
         )
 
-    token = create_access_token(user.username, user.id, timedelta(minutes=20))
+    token = create_access_token(user.username, user.id, timedelta(minutes=200))  # TODO: Why 20 minutes is not enough? token expires
     return {
         "access_token": token,
         "token_type": "bearer",
