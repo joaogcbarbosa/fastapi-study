@@ -18,6 +18,7 @@ class User(Base):
     hashed_password: Mapped[str] = mapped_column(String(100), nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, nullable=False)
     role: Mapped[str] = mapped_column(String(20), nullable=False)
+    phone_number: Mapped[str] = mapped_column(String(20), nullable=True)
 
 
 class Todo(Base):
