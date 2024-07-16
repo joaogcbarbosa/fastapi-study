@@ -21,8 +21,6 @@ async def get_user(user: user_dependency):
         raise HTTPException(status_code=404, detail="Authentication failed.")
     session = db_conn.get_session()
     actual_user = session.query(User).filter_by(id=user["id"]).all()
-    if actual_user is None:
-        raise HTTPException(status_code=404, detail="Could not find this user.")
     return actual_user
 
 
@@ -32,7 +30,5 @@ async def change_password(user: user_dependency, user_request: UserRequest):
         raise HTTPException(status_code=401, detail="Authentication Failed.")
     session = db_conn.get_session()
     actual_user = session.query(User).filter_by(id=user["id"]).first()
-    if actual_user is None:
-        raise HTTPException(status_code=404, detail="Could not find this user.")
     actual_user.hashed_password = bcrypt.hash(user_request.password)
     session.commit()
