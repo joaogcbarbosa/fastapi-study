@@ -11,6 +11,7 @@ class UserRequest(BaseModel):
     last_name: str
     password: str
     role: str
+    phone_number: str
 
 
 class UserVerification(BaseModel):
