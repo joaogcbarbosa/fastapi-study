@@ -1,11 +1,12 @@
+from typing import Annotated
+
 from config import DBConnection
 from fastapi import APIRouter, Depends, HTTPException
-from typing import Annotated
-from utils.authentication import get_current_user
-from starlette import status
 from models.models_db import User
 from models.models_request import UserRequest
 from passlib.context import CryptContext
+from starlette import status
+from utils.authentication import get_current_user
 
 router = APIRouter(prefix="/user", tags=["User"])
 
