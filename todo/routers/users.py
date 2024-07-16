@@ -18,7 +18,7 @@ bcrypt = CryptContext(schemes=["bcrypt"], deprecated="auto")
 @router.get("", status_code=status.HTTP_200_OK)
 async def get_user(user: user_dependency):
     if user is None:
-        raise HTTPException(status_code=404, detail="Authentication failed.")
+        raise HTTPException(status_code=401, detail="Authentication failed.")
     session = db_conn.get_session()
     actual_user = session.query(User).filter_by(id=user["id"]).all()
     return actual_user
