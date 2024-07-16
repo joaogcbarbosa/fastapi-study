@@ -35,4 +35,6 @@ class Todo(Base):
             "title": self.title,
             "description": self.description,
             "priority": self.priority,
+            "complete": self.complete,
+            "user_id": self.user_id,
         }
