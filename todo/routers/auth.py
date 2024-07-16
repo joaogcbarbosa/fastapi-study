@@ -9,6 +9,7 @@ from passlib.context import CryptContext
 from starlette import status
 from utils.authentication import authenticate_user, create_access_token
 from datetime import timedelta
+from sqlalchemy.orm import Session
 
 
 router = APIRouter(
@@ -16,12 +17,12 @@ router = APIRouter(
     tags=["Authentication"]
 )
 
-db_conn = DBConnection()
+db_dependency = Annotated[Session, DBConnection().get_session()]
 bcrypt = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 @router.post("", status_code=status.HTTP_201_CREATED)
-async def create_user(user_request: UserRequest):
+async def create_user(user_request: UserRequest, session: db_dependency):
     new_user = User(
         email=user_request.email,
         username=user_request.username,
@@ -31,7 +32,6 @@ async def create_user(user_request: UserRequest):
         is_active=True,
         role=user_request.role,
     )
-    session = db_conn.get_session()
     session.add(new_user)
     session.commit()
 
