@@ -31,6 +31,7 @@ async def create_user(user_request: UserRequest, session: db_dependency):
         hashed_password=bcrypt.hash(user_request.password),
         is_active=True,
         role=user_request.role,
+        phone_number=user_request.phone_number
     )
     session.add(new_user)
     session.commit()
