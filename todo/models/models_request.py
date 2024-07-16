@@ -13,6 +13,11 @@ class UserRequest(BaseModel):
     role: str
 
 
+class UserVerification(BaseModel):
+    password: str
+    new_password: str = Field(min_length=6)
+
+
 class TodoRequest(BaseModel):
     id: Optional[int] = None
     title: str = Field(min_length=3)
