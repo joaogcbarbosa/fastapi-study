@@ -10,7 +10,7 @@ from sqlalchemy.orm import Session
 
 router = APIRouter(prefix="/todo", tags=["TODO's"])
 
-db_dependency = Annotated[Session, Depends(DBConnection().get_session())]
+db_dependency = Annotated[Session, Depends(DBConnection().get_session)]
 user_dependency = Annotated[dict, Depends(get_current_user)]
 
 

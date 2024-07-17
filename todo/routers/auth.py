@@ -17,7 +17,7 @@ router = APIRouter(
     tags=["Authentication"]
 )
 
-db_dependency = Annotated[Session, DBConnection().get_session()]
+db_dependency = Annotated[Session, Depends(DBConnection().get_session)]
 bcrypt = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
