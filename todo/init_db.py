@@ -1,6 +1,6 @@
 from typing import Optional
 
-from config import DBConnection
+from todo.config.db import DBConnection
 from sqlalchemy import Boolean, Integer, String, ForeignKey
 from sqlalchemy.orm import Mapped, declarative_base, mapped_column
 
