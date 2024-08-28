@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from config import DBConnection
+from todo.config.db import DBConnection
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
 from models.models_db import User

@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from config import DBConnection
+from todo.config.db import DBConnection
 from fastapi import APIRouter, Depends, HTTPException, Path
 from models.models_db import Todo
 from models.models_request import TodoRequest
