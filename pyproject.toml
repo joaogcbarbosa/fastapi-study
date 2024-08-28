@@ -15,7 +15,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["black", "isort", "alembic", "faker", "pymssql", "pytest"]
+dev = ["black", "isort", "alembic", "faker", "pymssql", "pytest", "httpx"]
 
 [tool.black]
 line-length = 100
