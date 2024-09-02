@@ -1,12 +1,12 @@
 from typing import Annotated
 
-from todo.config.db import DBConnection
+from app.config.db import DBConnection
 from fastapi import APIRouter, Depends, HTTPException
-from todo.models.models_db import User
-from todo.models.models_request import UserVerification, UserRequest
+from app.models.models_db import User
+from app.models.models_request import UserVerification, UserRequest
 from passlib.context import CryptContext
 from starlette import status
-from todo.utils.authentication import get_current_user
+from app.utils.authentication import get_current_user
 from sqlalchemy.orm import Session
 
 router = APIRouter(prefix="/user", tags=["User"])

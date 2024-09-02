@@ -1,11 +1,11 @@
 from typing import Annotated
 
-from todo.config.db import DBConnection
+from app.config.db import DBConnection
 from fastapi import APIRouter, Depends, HTTPException, Path
-from todo.models.models_db import Todo
-from todo.models.models_request import TodoRequest
+from app.models.models_db import Todo
+from app.models.models_request import TodoRequest
 from starlette import status
-from todo.utils.authentication import get_current_user
+from app.utils.authentication import get_current_user
 from sqlalchemy.orm import Session
 
 router = APIRouter(prefix="/todo", tags=["TODO's"])
