@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
-from config.db import DBConnection
-from models.models_db import User
+from todo.config.db import DBConnection
+from todo.models.models_db import User
 from passlib.context import CryptContext
 from dotenv import load_dotenv
 from jose import jwt, JWTError

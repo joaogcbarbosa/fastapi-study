@@ -1,13 +1,13 @@
 from typing import Annotated
 
-from config.db import DBConnection
+from todo.config.db import DBConnection
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
-from models.models_db import User
-from models.models_request import UserRequest, Token
+from todo.models.models_db import User
+from todo.models.models_request import UserRequest, Token
 from passlib.context import CryptContext
 from starlette import status
-from utils.authentication import authenticate_user, create_access_token
+from todo.utils.authentication import authenticate_user, create_access_token
 from datetime import timedelta
 from sqlalchemy.orm import Session
 
