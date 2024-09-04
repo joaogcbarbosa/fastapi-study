@@ -4,3 +4,4 @@ todos.db
 .env
 .pytest_cache
 .vscode
+alembic.ini
