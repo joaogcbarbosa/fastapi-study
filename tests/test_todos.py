@@ -1,8 +1,4 @@
-from fastapi.testclient import TestClient
-from app.main import app
-
-
-test_client = TestClient(app=app, base_url="https://0.0.0.0:3000")
+from .fixtures.test_client import test_client
 
 
 def test_get_all():
