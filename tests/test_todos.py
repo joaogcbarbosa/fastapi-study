@@ -1,4 +1,4 @@
-from .fixtures.test_client import test_client
+from .fixtures.test_client import test_client, db_session
 
 
 def test_get_all(test_client):
