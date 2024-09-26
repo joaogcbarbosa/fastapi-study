@@ -52,3 +52,8 @@ def test_client(db_session):
     app.dependency_overrides[DBConnection().get_session] = override_get_db
     with TestClient(app) as test_client:
         yield test_client
+
+
+@pytest.fixture(scope="module")
+def test_user():
+    return {"username": "testuser", "password": "testpass"}
