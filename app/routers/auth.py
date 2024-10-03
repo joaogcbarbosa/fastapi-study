@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
 from app.models.models_db import User
 from app.models.models_request import UserRequest, Token
-from app.config.db import get_session
+from app.config.db import db_dependency
 from passlib.context import CryptContext
 from starlette import status
 from app.utils.authentication import authenticate_user, create_access_token
@@ -17,7 +17,6 @@ router = APIRouter(
     tags=["Authentication"]
 )
 
-db_dependency = Annotated[Session, Depends(get_session)]
 bcrypt = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 

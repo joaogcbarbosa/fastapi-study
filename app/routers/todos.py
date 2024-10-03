@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from app.config.db import get_session
+from app.config.db import db_dependency
 from fastapi import APIRouter, Depends, HTTPException, Path
 from app.models.models_db import Todo
 from app.models.models_request import TodoRequest
@@ -10,7 +10,6 @@ from sqlalchemy.orm import Session
 
 router = APIRouter(prefix="/todo", tags=["TODO's"])
 
-db_dependency = Annotated[Session, Depends(get_session)]
 user_dependency = Annotated[dict, Depends(get_current_user)]
 
 

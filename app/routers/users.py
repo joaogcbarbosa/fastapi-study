@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from app.config.db import get_session
+from app.config.db import db_dependency
 from fastapi import APIRouter, Depends, HTTPException
 from app.models.models_db import User
 from app.models.models_request import UserVerification, UserRequest
@@ -11,7 +11,6 @@ from sqlalchemy.orm import Session
 
 router = APIRouter(prefix="/user", tags=["User"])
 
-db_dependency = Annotated[Session, Depends(get_session)]
 user_dependency = Annotated[dict, Depends(get_current_user)]
 bcrypt = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
