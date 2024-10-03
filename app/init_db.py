@@ -1,11 +1,11 @@
 from typing import Optional
 
-from .config.db import DBConnection
+from .config.db import get_engine
 from sqlalchemy import Boolean, Integer, String, ForeignKey
 from sqlalchemy.orm import Mapped, declarative_base, mapped_column
 
-db_conn = DBConnection()
-engine = db_conn.get_engine()
+
+engine = get_engine()
 
 Base = declarative_base()
 
