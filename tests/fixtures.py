@@ -7,7 +7,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
-from app.config.db import DBConnection
+from app.config.db import get_session
 from app.init_db import Base
 from app.main import app
 
@@ -49,7 +49,7 @@ def test_client(db_session):
         finally:
             db_session.close()
 
-    app.dependency_overrides[DBConnection().get_session] = override_get_db
+    app.dependency_overrides[get_session] = override_get_db
     with TestClient(app) as test_client:
         yield test_client
 
