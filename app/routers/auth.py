@@ -1,10 +1,10 @@
 from typing import Annotated
 
-from app.config.db import DBConnection
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
 from app.models.models_db import User
 from app.models.models_request import UserRequest, Token
+from app.config.db import get_session
 from passlib.context import CryptContext
 from starlette import status
 from app.utils.authentication import authenticate_user, create_access_token
@@ -17,7 +17,7 @@ router = APIRouter(
     tags=["Authentication"]
 )
 
-db_dependency = Annotated[Session, Depends(DBConnection().get_session)]
+db_dependency = Annotated[Session, Depends(get_session)]
 bcrypt = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
