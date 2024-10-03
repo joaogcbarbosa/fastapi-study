@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-from app.config.db import DBConnection
 from app.models.models_db import User
 from passlib.context import CryptContext
 from dotenv import load_dotenv
