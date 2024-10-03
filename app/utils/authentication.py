@@ -8,6 +8,7 @@ from typing import Union, Annotated
 from fastapi.security import OAuth2PasswordBearer
 from fastapi import Depends, HTTPException
 from starlette import status
+from sqlalchemy.orm import Session
 import os
 
 
@@ -15,7 +16,6 @@ load_dotenv()
 SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = os.getenv("ALGORITHM")
 
-db_conn = DBConnection()
 bcrypt = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_bearer = OAuth2PasswordBearer(tokenUrl="auth/token")
 
@@ -30,8 +30,7 @@ def create_access_token(username: str, user_id: int, expires_delta: timedelta) -
     return jwt.encode(to_encode, key=SECRET_KEY, algorithm=ALGORITHM)
 
 
-def authenticate_user(username: str, password: str) -> Union[User, False]:
-    session = db_conn.get_session()
+def authenticate_user(username: str, password: str, session: Session) -> Union[User, False]:
     user = session.query(User).filter_by(username=username).first()
     if user is None or not bcrypt.verify(password, user.hashed_password):
         return False
